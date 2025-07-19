@@ -9,25 +9,39 @@ export default function Register() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleRegister = async () => {
-    try {
-      await axios.post('https://forms-production-0d19.up.railway.app/auth/register', {
-        email,
-        password,
-        role,
-      });
+ const handleRegister = async () => {
+  try {
+    await axios.post('https://forms-production-0d19.up.railway.app/auth/register', {
+      email,
+      password,
+      role,
+    });
+
+    setError('Registered successfully. Redirecting to login...');
+    setTimeout(() => {
       navigate('/');
-    } catch (err) {
-      setError('Registration failed. Try again.');
-    }
-  };
+    }, 1500);
+  } catch (err) {
+    setError('Registration failed. Try again.');
+  }
+};
+
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded shadow-md w-full max-w-sm">
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Register</h2>
 
-        {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+            {error && (
+      <p
+        className={`text-sm mb-4 ${
+          error.includes('success') ? 'text-green-600' : 'text-red-500'
+        }`}
+      >
+        {error}
+      </p>
+    )}
+
 
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
