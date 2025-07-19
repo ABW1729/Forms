@@ -100,10 +100,10 @@ const handleSubmit = () => {
 
   for (let i = 0; i < questions.length; i++) {
     const q = questions[i];
-    if (!q.question || q.question.trim() === '') {
-      alert(`Question ${i + 1} must have a title.`);
-      return;
-    }
+    if (!q.text || q.text.trim() === '') {
+    alert(`Question ${i + 1} must have a title.`);
+    return;
+  }
     if (q.type === 'mcq') {
       const validOptions = q.options.filter(opt => opt.trim() !== '');
       if (validOptions.length === 0) {
