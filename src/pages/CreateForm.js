@@ -53,7 +53,10 @@ export default function CreateForm() {
   };
 
 
-
+ const Logout = () => {
+  logout();
+  navigate('/');
+};
   const handleOptionChange = (qIndex, optIndex, value) => {
     const updated = [...questions];
     updated[qIndex].options[optIndex] = value;
@@ -144,7 +147,7 @@ const moveOptionDown = (qIndex, optIndex) => {
           </button>
           <button
             className="text-sm text-red-600 underline"
-            onClick={logout}
+            onClick={Logout}
           >
             Logout
           </button>
