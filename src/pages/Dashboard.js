@@ -10,7 +10,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     axios
-      .get('http://13.217.199.166:5000/forms', {
+      .get('https://forms-production-0d19.up.railway.app/forms', {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setForms(res.data))
@@ -22,7 +22,7 @@ export default function Dashboard() {
   const handleDelete = async (id) => {
   if (!window.confirm('Are you sure you want to delete this form?')) return;
   try {
-    await axios.delete(`http://13.217.199.166:5000/forms/${id}`, {
+    await axios.delete(`https://forms-production-0d19.up.railway.app/forms/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     setForms(forms.filter((form) => form._id !== id));

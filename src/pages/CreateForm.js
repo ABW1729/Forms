@@ -79,7 +79,7 @@ export default function CreateForm() {
     }
 
     try {
-      await axios.post('http://localhost:5000/forms', { title, questions }, {
+      await axios.post('https://forms-production-0d19.up.railway.app/forms', { title, questions }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       navigate('/dashboard');

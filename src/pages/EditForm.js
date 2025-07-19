@@ -13,7 +13,7 @@ export default function EditForm() {
 
   useEffect(() => {
     axios
-      .get(`http://13.217.199.166:5000/forms/${id}`, {
+      .get(`https://forms-production-0d19.up.railway.app/forms/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -41,7 +41,7 @@ export default function EditForm() {
 
     axios
       .put(
-        `http://13.217.199.166:5000/forms/${id}`,
+        `https://forms-production-0d19.up.railway.app/forms/${id}`,
         { ...form },
         { headers: { Authorization: `Bearer ${token}` } }
       )

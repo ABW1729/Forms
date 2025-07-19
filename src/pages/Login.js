@@ -12,7 +12,7 @@ export default function Login() {
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post('http://13.217.199.166:5000/auth/login', { email, password });
+      const res = await axios.post('https://forms-production-0d19.up.railway.app/auth/login', { email, password });
       login(res.data.token);
       navigate('/dashboard');
     } catch (err) {

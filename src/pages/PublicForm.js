@@ -11,7 +11,7 @@ export default function PublicForm() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    axios.get(`http://13.217.199.166:5000/forms/${id}`).then(res => {
+    axios.get(`https://forms-production-0d19.up.railway.app/forms/${id}`).then(res => {
       setForm(res.data);
       setAnswers(res.data.questions.map(() => ''));
     });
@@ -24,7 +24,7 @@ export default function PublicForm() {
     }
 
     const payload = form.questions.map((q, i) => ({ question: q.text, answer: answers[i] }));
-    await axios.post(`http://13.217.199.166:5000/forms/${id}/submit`, {  name:name,answers: payload });
+    await axios.post(`https://forms-production-0d19.up.railway.app/forms/${id}/submit`, {  name:name,answers: payload });
     setSubmitted(true);
     setError('');
   };

@@ -20,7 +20,7 @@ export default function Responses() {
  const [showSummary, setShowSummary] = useState(false);
 
    useEffect(() => {
-    axios.get(`http://13.217.199.166:5000/forms/${formId}/submissions`, {
+    axios.get(`https://forms-production-0d19.up.railway.app/forms/${formId}/submissions`, {
       headers: { Authorization: `Bearer ${token}` },
     })
     .then(res => setResponses(res.data))
@@ -28,7 +28,7 @@ export default function Responses() {
   }, [formId, token]);
 
   const fetchSummary = async () => {
-      const res = await axios.get(`http://13.217.199.166:5000/forms/summary/${formId}`, {
+      const res = await axios.get(`https://forms-production-0d19.up.railway.app/forms/summary/${formId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setSummary(res.data);
@@ -38,7 +38,7 @@ export default function Responses() {
 
   const downloadCSV = async (id) => {
     try {
-      const res = await axios.get(`http://13.217.199.166:5000/export/${id}`, {
+      const res = await axios.get(`https://forms-production-0d19.up.railway.app/export/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
         responseType: 'blob',
       });
