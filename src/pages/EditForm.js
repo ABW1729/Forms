@@ -27,32 +27,38 @@ export default function EditForm() {
   }, [id, token]);
 
   const handleSave = () => {
-    if (!form.questions.length) {
-      alert('Form needs at least one question.');
+  if (!form.questions.length) {
+    alert('Form needs at least one question.');
+    return;
+  }
+
+  for (const [index, q] of form.questions.entries()) {
+    if (!q.text || q.text.trim() === '') {
+      alert(`Question ${index + 1} must have a title.`);
       return;
     }
 
-    for (const q of form.questions) {
-      if (q.type === 'mcq' && (!q.options || q.options.length === 0)) {
-        alert('Each MCQ question must have at least one option.');
-        return;
-      }
+    if (q.type === 'mcq' && (!q.options || q.options.length === 0)) {
+      alert(`Question ${index + 1} must have at least one option.`);
+      return;
     }
+  }
 
-    axios
-      .put(
-        `https://forms-production-0d19.up.railway.app/forms/${id}`,
-        { ...form },
-        { headers: { Authorization: `Bearer ${token}` } }
-      )
-      .then(() => {
-        alert('Form updated!');
-        navigate('/dashboard');
-      })
-      .catch((err) => {
-        console.error('Update error', err);
-      });
-  };
+  axios
+    .put(
+      `https://forms-production-0d19.up.railway.app/forms/${id}`,
+      { ...form },
+      { headers: { Authorization: `Bearer ${token}` } }
+    )
+    .then(() => {
+      alert('Form updated!');
+      navigate('/dashboard');
+    })
+    .catch((err) => {
+      console.error('Update error', err);
+    });
+};
+  
     const handleLogout = () => {
         logout();
         navigate('/');
